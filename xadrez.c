@@ -7,72 +7,72 @@
 #define RAINHA 8
 #define CAVALO 3
 
-int main() {
-
-    int i, j;
-
-    // Nível Novato - Movimentação das Peças
-    // Implementação de Movimentação do Bispo
-    printf("movimentação do bispo\n");
-
-    for(i = 0; i < BISPO; i++){
+// função recursiva com Loop aninhado - Bispo
+void moverBispo(int passo){
+    if (passo == 0) return; //recursão para quando chegar a 0
+    //simula "cima" e "direita" como se fosse movimento diagonal
+    for (int i = 0; i < 1; i++)
+    {
         printf("cima\n");
-        printf("direita\n");
+        for (int j = 0; j < 1; j++)
+        {
+            printf("direita\n");
+        }
+        
     }
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+    moverBispo (passo -1); //chamada recursiva 
+}
+    
 
-    // Implementação de Movimentação da Torre
-    printf("\nMovimentação da torre\n");
-   
-    i = 0;
-
-while (i < TORRE)
-{
-    printf("Direita\n");
-    i++;
+// Função recursiva simples - Torre
+void moverTorre (int passo){  
+    if (passo == 0) return;      // caso base
+    
+        printf("Direita\n");
+        moverTorre(passo -1); // chamada recursiva
+    
 }
 
-
-    // Implementação de Movimentação da Rainha
-    printf("\nMovimentação da Rainha\n");
-
-    i = 0;
-
-    do
-    {
-        printf("esquerda\n");
-        i++;
-} while (i < RAINHA);
+// Função recursiva simples - Rainha
+void moverRainha (int passo){
+    if (passo == 0) return;  // caso base
     
+        printf("Esquerda\n");
+        moverRainha(passo -1); // chamada recursiva
+    
+}
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    printf("\nMovimentaçã do cavalo\n");
+// Cavalo com múltiplas variáveis, continue e break
+void moverCavalo(){
 
-    for ( i = 0; i < CAVALO; i++)
-    {
-        //Movimento vertical 2 vezes para baixo
-        for (j = 0; i < 2; i++)
-        {
-            printf("Baixo\n");
-        }
-       //movimento horizontal 1 vez para esquerda
-        j = 0;
-        while (j < 1)
-        {
-            printf("Esquerda\n");
-        j++;
-        }
-    printf("---\n");
+    printf("Movimentação do cavalo\n");
 
+    int i, j;
+    for(i = 0, j = 2; i < 3; i++, j--) {
+        if (i == j) continue; // pula se i == j
+
+        printf("cima\n");
+        printf("cima\n");
+
+        if (i > 1) break; // sai do loop se i > 1
+
+        printf("Direita\n");
     }
-    
+}
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
+int main() {
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+    printf("Movimentação do Bispo\n");
+    moverBispo(BISPO);
+
+    printf("\nMovimentação da Torre\n");
+    moverTorre(TORRE);
+
+    printf("\nMovimentação da Rainha\n");
+    moverRainha(RAINHA);
+
+    printf("\n");
+    moverCavalo();
 
     return 0;
 }
